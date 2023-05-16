@@ -12,9 +12,20 @@ let blastoise = {name: 'blastoise', height: '5 feet 3 inches', weight: '188.5 lb
 
 pokemonList[2] = blastoise;
 
-function pokemonFunction() {
+let objects = document.getElementById("objects");
 
-  document.getElementById("demo").innerHTML = JSON.stringify(pokemonList);
+for (let i = 0; i < pokemonList.length; i++) {
+
+    let item = pokemonList[i];
+
+    let li = document.createElement('li');
+
+    li.textContent = `Name: ${item.name}, Height: ${item.height}, Weight: ${item.weight}, Type: ${item.type}`;
+
+    objects.appendChild(li);
+
+
+
 }
 
-pokemonFunction()
+
