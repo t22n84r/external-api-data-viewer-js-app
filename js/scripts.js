@@ -1,22 +1,60 @@
-let pokemonList = [];
+let pokemonRepository = (function() {
 
-let charizard = {name: 'charizard', height: 5.7, weight: '199.5 lbs', type: ['fire', 'flying']};
+    let charizard = {name: 'charizard', height: 5.7, weight: '199.5 lbs', type: ['fire', 'flying']};
 
-pokemonList[0] = charizard;
+    let venusaur = {name: 'venusaur', height: 6.7, weight: '220.5 lbs', type: ['grass', 'poison']};
 
-let venusaur = {name: 'venusaur', height: 6.7, weight: '220.5 lbs', type: ['grass', 'poison']};
+    let blastoise = {name: 'blastoise', height: 5.3, weight: '188.5 lbs', type: 'water'};
 
-pokemonList[1] = venusaur;
+    let pokemonList = [charizard, venusaur, blastoise];
 
-let blastoise = {name: 'blastoise', height: 5.3, weight: '188.5 lbs', type: 'water'};
+    function add(pokemon) {
 
-pokemonList[2] = blastoise;
+        /* More stricter version of key check ====================
+        var validKeyNames = Object.keys(pokemon);
+        let booleanArray = [];
+        if (validKeyNames.includes('name')) {booleanArray.push(true)} else {booleanArray.push(false)}
+        if (validKeyNames.includes('hobb')) {booleanArray.push(true)} else {booleanArray.push(false)}
+        if (validKeyNames.includes('weight')) {booleanArray.push(true)} else {booleanArray.push(false)}
+        if (validKeyNames.includes('type')) {booleanArray.push(true)} else {booleanArray.push(false)}
+        let isAllSame = array => array.every(element => element === array[0]);*/
+
+        const validKeyNames = ['name', 'height', 'weight', 'type'];
+        let check = (obj, arr) => Object.keys(obj).every(key => arr.includes(key));
+
+        if ((pokemon.constructor === Object) && (check(pokemon, validKeyNames) === true)) {
+            pokemonList.push(pokemon);
+        } else {
+            alert('Only objects and object keys-(name, height, weight, type) are allowed.')
+        }
+    }
+
+    function filterByName(pokemonName) {
+
+        const filteredPokemon = pokemonList.filter(element => element.name === pokemonName.toLowerCase());
+        if (Object.keys(filteredPokemon).length === 0 ) {alert('Pokemon not found in repository')} else {
+        return filteredPokemon};
+    }
+
+    function getAll() {
+        return pokemonList;
+    }
+
+//    getAll = () => pokemonList;
+
+    return {
+        add: add,
+        filterByName:filterByName,
+        getAll: getAll
+      };
+
+})();
+
+let pokemonListTmp = pokemonRepository.getAll();
 
 let objects = document.getElementById("objects");
 
-for (let i = 0; i < pokemonList.length; i++) {
-
-    let item = pokemonList[i];
+pokemonListTmp.forEach (function(item) {
 
     let li = document.createElement('li');
 
@@ -27,6 +65,11 @@ for (let i = 0; i < pokemonList.length; i++) {
     } else {
         li.textContent = `${pokemon}`;
     }
-    
+
     objects.appendChild(li);
-}
+});
+
+//console.log(pokemonRepository.getAll());
+//pokemonRepository.add({name:'Pikachu', height: 1.04});
+//console.log(pokemonRepository.getAll());
+//console.log(pokemonRepository.filterByName('izard'));
