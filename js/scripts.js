@@ -8,6 +8,7 @@ let pokemonRepository = (function() {
 
     let pokemonList = [charizard, venusaur, blastoise];
 
+    // ======================================================================================================= Add method with checks for input
     function add(pokemon) {
 
         /* More stricter version of key check ====================
@@ -29,6 +30,7 @@ let pokemonRepository = (function() {
         }
     }
 
+    // ===================================================================================================== Filter method to filter by name key
     function filterByName(pokemonName) {
 
         const filteredPokemon = pokemonList.filter(element => element.name === pokemonName.toLowerCase());
@@ -36,6 +38,8 @@ let pokemonRepository = (function() {
         return filteredPokemon};
     }
 
+    // ====================================================================================================== Get the whole Pokemon repository
+    // getAll = () => pokemonList; Neater way for getALL() method
     function getAll() {
         return pokemonList;
     }
@@ -50,6 +54,7 @@ let pokemonRepository = (function() {
 
 })();
 
+// =========================================================================================================== Iterate over and display the whole repository
 let pokemonListTmp = pokemonRepository.getAll();
 
 let objects = document.getElementById("objects");
