@@ -11,15 +11,6 @@ let pokemonRepository = (function() {
     // ======================================================================================================= Add method with checks for input
     function add(pokemon) {
 
-        /* More stricter version of key check ====================
-        var validKeyNames = Object.keys(pokemon);
-        let booleanArray = [];
-        if (validKeyNames.includes('name')) {booleanArray.push(true)} else {booleanArray.push(false)}
-        if (validKeyNames.includes('hobb')) {booleanArray.push(true)} else {booleanArray.push(false)}
-        if (validKeyNames.includes('weight')) {booleanArray.push(true)} else {booleanArray.push(false)}
-        if (validKeyNames.includes('type')) {booleanArray.push(true)} else {booleanArray.push(false)}
-        let isAllSame = array => array.every(element => element === array[0]);*/
-
         const validKeyNames = ['name', 'height', 'weight', 'type'];
         let check = (obj, arr) => Object.keys(obj).every(key => arr.includes(key));
 
@@ -30,7 +21,33 @@ let pokemonRepository = (function() {
         }
     }
 
-    // ===================================================================================================== Filter method to filter by name key
+    // ======================================================================================================= Method to display a single object
+    const addListItem = pokemon => {
+
+        let ul = document.querySelector('.pokemon-list');
+
+        let listItem = document.createElement('li');
+    
+        let button = document.createElement('button');
+    
+        button.innerText = pokemon.name;
+    
+        button.classList.add('pokemon-details');
+    
+        listItem.appendChild(button);
+    
+        ul.appendChild(listItem);
+
+        button.addEventListener('click', () => showDetails(pokemon));
+    }
+
+    // ======================================================================================================= Method to display all object keys upon request
+    const showDetails = pokemon => {
+
+        console.log(pokemon.name);
+    }
+
+    // ======================================================================================================= Filter method to filter by name key
     function filterByName(pokemonName) {
 
         const filteredPokemon = pokemonList.filter(element => element.name === pokemonName.toLowerCase());
@@ -38,16 +55,15 @@ let pokemonRepository = (function() {
         return filteredPokemon};
     }
 
-    // ====================================================================================================== Get the whole Pokemon repository
-    // getAll = () => pokemonList; Neater way for getALL() method
+    // ======================================================================================================= Get the whole repository
+    // const getAll = () => pokemonList; Neater way for getALL() method
     function getAll() {
         return pokemonList;
     }
 
-//    getAll = () => pokemonList;
-
     return {
         add: add,
+        addListItem: addListItem,
         filterByName:filterByName,
         getAll: getAll
       };
@@ -55,23 +71,11 @@ let pokemonRepository = (function() {
 })();
 
 // =========================================================================================================== Iterate over and display the whole repository
-let pokemonListTmp = pokemonRepository.getAll();
 
-let objects = document.getElementById("objects");
+pokemonRepository.getAll().forEach (item => {
 
-pokemonListTmp.forEach (function(item) {
+    pokemonRepository.addListItem(item);
 
-    let li = document.createElement('li');
-
-    let pokemon = `Name: ${item.name}, Height: ${item.height}, Weight: ${item.weight}, Type: ${item.type}`;
-
-    if (item.height > 6.5) {
-        li.textContent = `${pokemon} - Wow, that's big!`;
-    } else {
-        li.textContent = `${pokemon}`;
-    }
-
-    objects.appendChild(li);
 });
 
 //console.log(pokemonRepository.getAll());

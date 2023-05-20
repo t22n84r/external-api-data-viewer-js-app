@@ -1,0 +1,10 @@
+.pokemon-details {
+    background-color: #89c4e1;
+    margin: 20px 0;
+    transition: all ease-in-out 0.3s;
+    border-radius: 15px 50px;
+}
+.pokemon-details:hover, .pokemon-details:focus {
+    cursor: pointer;
+    opacity: 0.5;
+}

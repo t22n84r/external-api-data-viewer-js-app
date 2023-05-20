@@ -1,0 +1,19 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+.pokemon-details {
+    background-color: #89c4e1;
+    margin: 20px 0;
+    -webkit-transition: all ease-in-out 0.3s;
+    -o-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    border-radius: 15px 50px;
+}
+.pokemon-details:hover, .pokemon-details:focus {
+    cursor: pointer;
+    opacity: 0.5;
+}
