@@ -1,17 +1,50 @@
 let pokemonRepository = (function() {
 
-    let charizard = {name: 'charizard', height: 5.7, weight: '199.5 lbs', type: ['fire', 'flying']};
+    let pokemonList = [];
 
-    let venusaur = {name: 'venusaur', height: 6.7, weight: '220.5 lbs', type: ['grass', 'poison']};
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
 
-    let blastoise = {name: 'blastoise', height: 5.3, weight: '188.5 lbs', type: 'water'};
+    // ======================================================================================================= Api call to populate the main array with objects
+    let loadList = () => {
 
-    let pokemonList = [charizard, venusaur, blastoise];
+        return fetch(apiUrl)
+            .then(response => response.json())
+
+            .then(json => {
+                json.results.forEach(item => {
+                    let pokemon = {
+                        name: item.name,
+                        detailsUrl: item.url
+                    };
+                    add(pokemon);
+                });
+            })
+        
+            .catch(e => console.error(e));
+    }
+
+    // ======================================================================================================= Api call to get details of an object
+    let loadDetails = item => {
+
+        let url = item.detailsUrl;
+
+        return fetch(url)
+            .then(response => response.json())
+
+            .then(details => {
+                item.imageUrl = details.sprites.front_default;
+                item.height = details.height;
+                item.weight = details.weight;
+                item.type = details.types;
+            })
+            
+            .catch(e => console.error(e));
+    }
 
     // ======================================================================================================= Add method with checks for input
     function add(pokemon) {
 
-        const validKeyNames = ['name', 'height', 'weight', 'type'];
+        const validKeyNames = ['name', 'detailsUrl'];
         let check = (obj, arr) => Object.keys(obj).every(key => arr.includes(key));
 
         if ((pokemon.constructor === Object) && (check(pokemon, validKeyNames) === true)) {
@@ -44,7 +77,9 @@ let pokemonRepository = (function() {
     // ======================================================================================================= Method to display all object keys upon request
     const showDetails = pokemon => {
 
-        console.log(pokemon.name);
+        loadDetails(pokemon).then(() => {
+            console.log(pokemon);
+          });
     }
 
     // ======================================================================================================= Filter method to filter by name key
@@ -62,6 +97,8 @@ let pokemonRepository = (function() {
     }
 
     return {
+        loadList: loadList,
+        loadDetails: loadDetails,
         add: add,
         addListItem: addListItem,
         filterByName:filterByName,
@@ -72,13 +109,11 @@ let pokemonRepository = (function() {
 
 // =========================================================================================================== Iterate over and display the whole repository
 
-pokemonRepository.getAll().forEach (item => {
+pokemonRepository.loadList().then( () => {
 
-    pokemonRepository.addListItem(item);
+    pokemonRepository.getAll().forEach (pokemon => {
 
+        pokemonRepository.addListItem(pokemon);
+
+    });
 });
-
-//console.log(pokemonRepository.getAll());
-//pokemonRepository.add({name:'Pikachu', height: 1.04});
-//console.log(pokemonRepository.getAll());
-//console.log(pokemonRepository.filterByName('izard'));
