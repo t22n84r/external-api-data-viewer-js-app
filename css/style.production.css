@@ -5,6 +5,22 @@
 * Browsers: last 4 version
 */
 
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+.pokemon-list {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: -webkit-max-content 10px -webkit-max-content;
+    -ms-grid-columns: max-content 10px max-content;
+    grid-template-columns: repeat(2, -webkit-max-content);
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 10px;
+    justify-items: center;
+    list-style-type: none;
+    place-content: center;
+}
 .pokemon-details {
     background-color: #89c4e1;
     margin: 20px 0;
@@ -12,6 +28,9 @@
     -o-transition: all ease-in-out 0.3s;
     transition: all ease-in-out 0.3s;
     border-radius: 15px 50px;
+    width: 100px;
+    height: 25px;
+    text-align: center;
 }
 .pokemon-details:hover, .pokemon-details:focus {
     cursor: pointer;
@@ -61,10 +80,6 @@
 #modal-container.is-visible .modal-close:hover, #modal-container.is-visible .modal-close:focus {
     cursor: pointer;
     opacity: 0.5;
-}
-#modal-container.is-visible .modal h1 {
-    text-align: center;
-    text-decoration: underline;
 }
 #modal-container.is-visible .modal ul {
     margin-top: 10%;

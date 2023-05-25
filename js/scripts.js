@@ -149,7 +149,7 @@ let pokemonRepository = (function() {
     
         let button = document.createElement('button');
     
-        button.innerText = pokemon.name;
+        button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     
         button.classList.add('pokemon-details');
     

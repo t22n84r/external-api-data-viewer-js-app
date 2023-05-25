@@ -1,8 +1,25 @@
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 10px;
+    justify-items: center;
+    list-style-type: none;
+    place-content: center;
+}
+
 .pokemon-details {
     background-color: #89c4e1;
     margin: 20px 0;
     transition: all ease-in-out .3s;
     border-radius: 15px 50px;
+    width: 100px;
+    height: 25px;
+    text-align: center;
 
     &:hover, &:focus {
         cursor: pointer;
@@ -48,11 +65,6 @@
                 cursor: pointer;
                 opacity: 0.5;
             }
-        }
-
-        h1 {
-            text-align: center;
-            text-decoration: underline;
         }
 
         ul {
