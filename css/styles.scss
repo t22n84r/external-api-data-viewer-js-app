@@ -41,21 +41,21 @@ h1 {
     display: grid;    /* this is used to center the modal */
 
     .modal {
+        position: relative;
         margin: auto;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, max-content);
+        grid-template-rows: max-content;
         box-sizing: border-box;
         background: #30a7d7;
         padding: 15px;
         width: 100%;
-        max-width: 700px;
+        max-width: max-content;
         border-radius: 5%;
 
 
         &-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            vertical-align: top;
             border: 0;
             background: none;
             color: #000;
@@ -73,7 +73,6 @@ h1 {
         }
 
         img {
-            margin: auto 0 auto auto;
             max-height: 300px;
             max-width: 300px;
         }
@@ -81,9 +80,7 @@ h1 {
 }
 
 @media all and (max-width: 500px) {
-    .modal {
-        grid-template-rows: repeat(2, 1fr);
-    }
+
     h1 {
         font-size: 22px;
       }

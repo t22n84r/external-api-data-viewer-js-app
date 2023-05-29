@@ -100,7 +100,7 @@ let pokemonRepository = (function() {
             div1.appendChild(titleElement);
             div1.appendChild(ul);
             div2.appendChild(img);
-            modal.appendChild(closeButtonElement);
+            div2.appendChild(closeButtonElement);
             modal.appendChild(div1);
             modal.appendChild(div2);
             modalContainer.appendChild(modal);
@@ -146,12 +146,14 @@ let pokemonRepository = (function() {
         let ul = document.querySelector('.pokemon-list');
 
         let listItem = document.createElement('li');
+
+        listItem.classList.add("list-group-item");
     
         let button = document.createElement('button');
     
         button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     
-        button.classList.add('pokemon-details');
+        button.classList.add('pokemon-details', 'btn', 'btn-outline-success');
     
         listItem.appendChild(button);
     

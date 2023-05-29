@@ -40,20 +40,20 @@ h1 {
    /* this is used to center the modal */
 }
 #modal-container.is-visible .modal {
+    position: relative;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: max-content;
     box-sizing: border-box;
     background: #30a7d7;
     padding: 15px;
     width: 100%;
-    max-width: 700px;
+    max-width: max-content;
     border-radius: 5%;
 }
 #modal-container.is-visible .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    vertical-align: top;
     border: 0;
     background: none;
     color: #000;
@@ -68,14 +68,10 @@ h1 {
     text-align: left;
 }
 #modal-container.is-visible .modal img {
-    margin: auto 0 auto auto;
     max-height: 300px;
     max-width: 300px;
 }
 @media all and (max-width: 500px) {
-    .modal {
-        grid-template-rows: repeat(2, 1fr);
-   }
     h1 {
         font-size: 22px;
    }

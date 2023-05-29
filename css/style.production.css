@@ -55,23 +55,38 @@ h1 {
    /* this is used to center the modal */
 }
 #modal-container.is-visible .modal {
+    position: relative;
     margin: auto;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr)[2];
-    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: (-webkit-max-content)[2];
+    -ms-grid-columns: (max-content)[2];
+    grid-template-columns: repeat(2, -webkit-max-content);
+    grid-template-columns: repeat(2, max-content);
+    -ms-grid-rows: -webkit-max-content;
+    -ms-grid-rows: max-content;
+    grid-template-rows: -webkit-max-content;
+    grid-template-rows: max-content;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     background: #30a7d7;
     padding: 15px;
     width: 100%;
-    max-width: 700px;
+    max-width: -webkit-max-content;
+    max-width: -moz-max-content;
+    max-width: max-content;
     border-radius: 5%;
 }
+#modal-container.is-visible .modal > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+#modal-container.is-visible .modal > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+}
 #modal-container.is-visible .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    vertical-align: top;
     border: 0;
     background: none;
     color: #000;
@@ -86,15 +101,10 @@ h1 {
     text-align: left;
 }
 #modal-container.is-visible .modal img {
-    margin: auto 0 auto auto;
     max-height: 300px;
     max-width: 300px;
 }
 @media all and (max-width: 500px) {
-    .modal {
-        -ms-grid-rows: (1fr)[2];
-        grid-template-rows: repeat(2, 1fr);
-   }
     h1 {
         font-size: 22px;
    }
