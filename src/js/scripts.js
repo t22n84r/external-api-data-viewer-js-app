@@ -61,6 +61,9 @@ let pokemonRepository = (function() {
         loadDetails(pokemon).then(() => {
 
             let modalContainer = document.getElementById('modal-container');
+
+            let modalBody = document.querySelector('.modal-body');
+            modalBody.innerHTML='';
           
             let titleElement = document.getElementById('modal-title-text');
             titleElement.innerText = pokemon.name.toUpperCase();
@@ -83,10 +86,6 @@ let pokemonRepository = (function() {
             let img = document.createElement("img");
             img.classList.add('col');
             img.src = pokemon.imageUrl;
-
-            let modalBody = document.querySelector('.modal-body');
-
-            modalBody.innerHTML='';
 
             modalBody.appendChild(ul);
             modalBody.appendChild(img);

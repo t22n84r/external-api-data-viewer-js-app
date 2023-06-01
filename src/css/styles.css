@@ -4,6 +4,8 @@ body {
 
 .navbar {
     background-color: #3B4CCA;
+    font-family: 'Pokemon Solid', sans-serif;
+                                                
 }
 
 .pokeball {
@@ -25,6 +27,10 @@ main {
 
 .modal-content {
     background-color: #5EBDFC;
+}
+
+.modal-title {
+    font-family: 'Bungee Shade', cursive;
 }
 
 @media all and (min-width: 750px) and (max-width: 1300px) {
