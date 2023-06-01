@@ -9,7 +9,8 @@ This is a JavaScript application that fetches data from an external API and disp
 - Allows users to interact with the displayed data
 - Provides a responsive and intuitive user interface
 
-##Usage
+## Usage
+
 Once you have the application running in your web browser, you can:
 
 - View the fetched data: The application will automatically fetch data from the external API and display it on the web page.
