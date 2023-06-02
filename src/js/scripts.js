@@ -99,6 +99,8 @@ let pokemonRepository = (function() {
         let ul = document.querySelector('.pokemon-list');
 
         let listItem = document.createElement('li');
+
+        listItem.classList.add('list-group-item')
     
         let button = document.createElement('button');
     
@@ -121,6 +123,37 @@ let pokemonRepository = (function() {
 
     // ======================================================================================================= Get the whole repository
     const getAll = () => pokemonList;
+
+    // ======================================================================================================= Method to search for object from array of objects
+    const searchItem = () => {
+
+        let searchInput = document.getElementById('search-input').value.toLowerCase();
+        let listArray = document.querySelectorAll('.list-group-item');
+
+        console.log(listArray);
+
+        listArray.forEach (pokemon => {
+
+            let listBtn = pokemon.querySelector('.btn').innerText.toLowerCase();
+
+            let searchList = document.querySelector('.pokemon-list');
+
+            if (listBtn.includes(searchInput) ) {
+                searchList.classList.add('search-list');
+                pokemon.style.display = 'inline-block';
+
+            } else {
+                pokemon.style.display = 'none';
+            }
+
+            if (!searchInput) {
+                searchList.classList.remove('search-list');
+              }
+        });
+    }
+
+    let searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', () => searchItem());
 
     return {
         loadList: loadList,
