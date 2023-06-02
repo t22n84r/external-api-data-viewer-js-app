@@ -130,8 +130,6 @@ let pokemonRepository = (function() {
         let searchInput = document.getElementById('search-input').value.toLowerCase();
         let listArray = document.querySelectorAll('.list-group-item');
 
-        console.log(listArray);
-
         listArray.forEach (pokemon => {
 
             let listBtn = pokemon.querySelector('.btn').innerText.toLowerCase();
