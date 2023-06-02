@@ -3,9 +3,11 @@ body {
 }
 
 .navbar {
-    background-color: #3B4CCA;
+    background-color: #3B4CCA;                                          
+}
+
+.navbar-brand {
     font-family: 'Pokemon Solid', sans-serif;
-                                                
 }
 
 .pokeball {
