@@ -20,7 +20,7 @@ let pokemonRepository = (function() {
                     });
                 })
         
-            .catch(e => console.error(e));
+            .catch(e => alert(e));
     }
 
     // ======================================================================================================= Api call to get details of an object
@@ -51,7 +51,7 @@ let pokemonRepository = (function() {
         if ((pokemon.constructor === Object) && (check(pokemon, validKeyNames) === true)) {
             pokemonList.push(pokemon);
         } else {
-            alert('Only objects and object keys-(name, height, weight, type) are allowed.')
+            alert('Only objects and object keys- (name, detailsUrl) are allowed.')
         }
     }
 
